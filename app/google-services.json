@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "143903141630",
+    "project_id": "mobilalk-korom-2aca9",
+    "storage_bucket": "mobilalk-korom-2aca9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143903141630:android:847de8d3f55289bb0e7faf",
+        "android_client_info": {
+          "package_name": "com.example.korom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143903141630-4hlsmvfvp6hnfe7v0kjv8r366v1i6ogv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.korom",
+            "certificate_hash": "155cf1ba43a6f8ed63f1f64b598b359c6dcd089f"
+          }
+        },
+        {
+          "client_id": "143903141630-neqejgum49bcdhs4ktnslcq77342q5jg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoKK0o8MjWzM1IzpCyVonYcUZrlL0qXbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143903141630-neqejgum49bcdhs4ktnslcq77342q5jg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
