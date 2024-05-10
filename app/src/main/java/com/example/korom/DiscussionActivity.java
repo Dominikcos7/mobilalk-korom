@@ -55,7 +55,12 @@ public class DiscussionActivity extends AppCompatActivity {
                 getAllComments();
             }
         });
-        getUserComments();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        otherCommentsButton.setChecked(true);
     }
 
     @Override
