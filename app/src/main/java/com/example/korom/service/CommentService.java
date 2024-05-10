@@ -24,6 +24,13 @@ public class CommentService {
     public Task<QuerySnapshot> getAll(){
         return mFirestore.collection(collectionName).get();
     }
+    public Task<QuerySnapshot> getUserComments(String userId){
+        return mFirestore.collection(collectionName).whereEqualTo("email", userId).get();
+    }
+
+    public Task<QuerySnapshot> getOtherComments(String userId){
+        return mFirestore.collection(collectionName).whereNotEqualTo("email", userId).get();
+    }
 
     public Task<DocumentReference> addComment(Comment comment){
         return mFirestore.collection(collectionName).add(comment);

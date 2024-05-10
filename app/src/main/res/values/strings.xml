@@ -25,4 +25,6 @@
     <string name="book_new_appointment">Book new appointment</string>
     <string name="welcome">Welcome</string>
     <string name="edit">Edit</string>
+    <string name="my_comments">My comments</string>
+    <string name="other_comments">Other comments</string>
 </resources>
