@@ -22,9 +22,6 @@
             android:name=".DiscussionActivity"
             android:exported="false" />
         <activity
-            android:name=".GalleryActivity"
-            android:exported="false" />
-        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity

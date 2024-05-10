@@ -50,7 +50,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         private TextView time;
         private TextView desc;
         private Button cancelButton;
-        private Button editButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -58,7 +57,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             date = itemView.findViewById(R.id.appointmentAppointmentDate);
             desc = itemView.findViewById(R.id.appointmentAppointmentDesc);
             cancelButton = itemView.findViewById(R.id.appointmentCancelButton);
-            editButton = itemView.findViewById(R.id.appointmentEditButton);
         }
 
         public void bindTo(Appointment currentItem){
@@ -68,7 +66,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             date.setText(dateStr);
             desc.setText(currentItem.getDescription());
             cancelButton.setTag(currentItem.getId());
-            editButton.setTag(currentItem.getId());
         }
     }
 }

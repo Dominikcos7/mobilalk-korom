@@ -26,11 +26,6 @@ public class IndexActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openGallery(View view) {
-        Intent intent = new Intent(this, GalleryActivity.class);
-        startActivity(intent);
-    }
-
     public void openDiscussion(View view) {
         Intent intent = new Intent(this, DiscussionActivity.class);
         startActivity(intent);
