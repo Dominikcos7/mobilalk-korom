@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".GalleryActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/galleryRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/><!-- TODO: gallery image recycler view-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

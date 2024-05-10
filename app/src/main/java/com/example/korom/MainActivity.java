@@ -12,12 +12,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.korom.model.User;
+import com.example.korom.service.UserService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private CredentialManager credentialManager;
     private GoogleSignInClient mGoogleSignInClient;
+    private UserService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        userService = UserService.getInstance();
     }
 
     @Override
@@ -59,24 +64,23 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account.getIdToken());
+                firebaseAuthWithGoogle(account);
             } catch (ApiException e){
                 Log.w(TAG, e);
             }
         }
     }
 
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Log.i(TAG, "ok");
-                } else {
-                    Log.w(TAG, task.getException());
-                }
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        mAuth.signInWithCredential(credential).addOnSuccessListener(this, authResult -> {
+            User user = new User(account.getDisplayName(), account.getEmail());
+            if(userService.addUserIfNotExists(user)){
+                Log.i(TAG, "successful database add");
             }
+            loadIndexView();
+        }).addOnFailureListener(this, e -> {
+            Log.e(TAG, e.toString());
         });
     }
 
@@ -89,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Log.i(TAG, "ok");
-                    Intent intent = new Intent(MainActivity.this, IndexActivity.class);
-                    startActivity(intent);
+                    loadIndexView();
                 } else {
                     Log.i(TAG, "error" + task.getException().getMessage());
                     Toast.makeText(MainActivity.this, "error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -101,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void register(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    public void loadIndexView(){
+        Intent intent = new Intent(MainActivity.this, IndexActivity.class);
         startActivity(intent);
     }
 

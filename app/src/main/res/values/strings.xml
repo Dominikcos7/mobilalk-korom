@@ -19,4 +19,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="addcomment">Add comment</string>
+    <string name="write_your_comment_here">Write your comment here...</string>
+    <string name="cancel">Cancel</string>
+    <string name="book_new_appointment">Book new appointment</string>
+    <string name="welcome">Welcome</string>
+    <string name="edit">Edit</string>
 </resources>
